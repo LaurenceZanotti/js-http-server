@@ -4,15 +4,17 @@ function main() {
   const port = 3000
 
   const server = net.createServer((c) => {
-    console.log("Cliente conectado: ", c.remoteAddress)
-    c.write("👌 Bem vindo!\r\n")
+    console.log("🤝🤝 Cliente conectado 🤝🤝\n", c.remoteAddress)
+    const body = "<html><head></head><body><h1>Teste</h1></body></html>\n"
+    const defaultResponse = `HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: ${body.length}\n\n${body}`
+    c.write(defaultResponse)
     
     c.on("data", (data) => {
-      console.log("🎲 Dados recebidos: ", data)
+      console.log("🎲🎲 Dados recebidos 🎲🎲\n", data.toString())
     })
 
     c.on("end", () => {
-      console.log("Cliente desconectado: ", c.remoteAddress)
+      console.log("🙋🙋‍♂️ Cliente desconectado 🙋‍♂️🙋", c.remoteAddress)
     })
   })
 
